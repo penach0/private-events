@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :user_signed_in?, only: [:new, :create]
+
   def index
     @events = Event.all
   end
