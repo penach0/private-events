@@ -8,5 +8,11 @@
         <%= @event.description %></li>
 </ul>
 
+<ul>
+    <% @event.attendees.each do |attendee| %>
+        <li><%= attendee.username %></li>
+    <% end %>
+</ul>
+
 <%= button_to "Attend", attendances_path, 
     params: { attendee_id: current_user.id, attended_event_id: @event.id }%>
