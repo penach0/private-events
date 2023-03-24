@@ -1,0 +1,11 @@
+<h1><%= @User.username %> Events</h1>
+
+<%if @user.created_events.empty? %>
+    <p>This User has no created events</p>
+<% else %>
+    <ul>
+        <% @user.created_events.each do |event| %>
+            <li><%= event.name %>, <%= event.location %> starts at <%= event.date %></li>
+        <% end %>
+    </ul>
+<% end %>
