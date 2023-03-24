@@ -2,7 +2,8 @@
 
 <ul>
     <li><strong>By: </strong><%= @event.creator.username %></li>
-    <li><strong>Date: </strong><%= @event.date %></li>
+    <li><strong>Date: </strong><%= @event.date.strftime("%d/%m/%y at %H:%M" ) %></li>
     <li><strong>Location:</strong><%= @event.location %></li>
-    <li><strong>Description: </strong><%= @event.description %></li>
+    <li><strong>Description: </strong><br>
+        <%= @event.description %></li>
 </ul>
