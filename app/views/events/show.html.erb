@@ -7,3 +7,6 @@
     <li><strong>Description: </strong><br>
         <%= @event.description %></li>
 </ul>
+
+<%= button_to "Attend", attendances_path, 
+    params: { attendee_id: current_user.id, attended_event_id: @event.id }%>
