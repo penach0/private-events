@@ -5,4 +5,8 @@ class Event < ApplicationRecord
 
   validates :creator_id, :name, :date, :location, :description, presence: true
   validates :date, comparison: { greater_than: Time.current }
+
+  def formatted_date
+    date.strftime("%d/%m/%y at %H:%M" )
+  end
 end

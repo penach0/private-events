@@ -7,7 +7,7 @@
 <% else %>
     <ul>
         <% @user.created_events.each do |event| %>
-            <li><%= event.name %>, <%= event.location %> starts at <%= event.date %></li>
+            <li><%= event.name %>, <%= event.location %> starts at <%= event.formatted_date %></li>
         <% end %>
     </ul>
 <% end %>
@@ -19,7 +19,7 @@
 <% else %>
     <ul>
         <% @user.attended_events.each do |event| %>
-            <li><%= event.name %>, <%= event.location %> starts at <%= event.date %></li>
+            <li><%= event.name %>, <%= event.location %> starts at <%= event.formatted_date %></li>
         <% end %>
     </ul>
 <% end %>
