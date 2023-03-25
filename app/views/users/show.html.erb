@@ -12,13 +12,29 @@
     </ul>
 <% end %>
 
-<h2>Attend Events</h2>
+<h2>Future Events</h2>
 
-<%if @user.attended_events.empty? %>
+<% future_events = @user.attended_events.where("date >= ?", Time.current) %>
+
+<%if future_events.empty? %>
+    <p>This User has no future events</p>
+<% else %>
+    <ul>
+        <% future_events.each do |event| %>
+            <li><%= event.name %>, <%= event.location %> starts at <%= event.formatted_date %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<h2>Past Events</h2>
+
+<% past_events = @user.attended_events.where("date <= ?", Time.current) %>
+
+<%if past_events.empty? %>
     <p>This User has no attended events</p>
 <% else %>
     <ul>
-        <% @user.attended_events.each do |event| %>
+        <% past_events.each do |event| %>
             <li><%= event.name %>, <%= event.location %> starts at <%= event.formatted_date %></li>
         <% end %>
     </ul>

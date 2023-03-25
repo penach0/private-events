@@ -9,4 +9,8 @@ class Event < ApplicationRecord
   def formatted_date
     date.strftime("%d/%m/%y at %H:%M" )
   end
+
+  def past?
+    date < Time.current
+  end
 end
