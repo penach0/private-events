@@ -10,7 +10,11 @@ class Event < ApplicationRecord
     date.strftime("%d/%m/%y at %H:%M" )
   end
 
-  def past?
-    date < Time.current
+  def self.past
+    where("date < ?", Time.current)
+  end
+
+  def self.future
+    where("date >= ?", Time.current)
   end
 end
