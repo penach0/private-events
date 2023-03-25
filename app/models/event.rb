@@ -13,7 +13,7 @@ class Event < ApplicationRecord
     date.strftime("%d/%m/%y at %H:%M" )
   end
 
-  def creator_logged_in?
-    creator_id == current_user.id 
+  def created_by?(user)
+    creator == user
   end
 end

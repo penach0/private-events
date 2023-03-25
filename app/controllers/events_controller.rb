@@ -55,7 +55,7 @@ class EventsController < ApplicationController
     def check_ownership
       @event = Event.find(params[:id])
 
-      unless @event.creator_logged_in?
+      unless @event.created_by?(current_user)
         redirect_back(fallback_location: root_path)
         flash[:error] = "You are not allowed to do that"
       end
