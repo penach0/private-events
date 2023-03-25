@@ -8,6 +8,8 @@
         <%= @event.description %></li>
 </ul>
 
+<h2>Participants</h2>
+
 <ul>
     <% @event.attendees.each do |attendee| %>
         <li><%= attendee.username %></li>
