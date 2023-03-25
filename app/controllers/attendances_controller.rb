@@ -1,7 +1,7 @@
 class AttendancesController < ApplicationController
   def create
     @attendance = Attendance.create(attendance_params)
-    flash[:sucess] = "You are going to this event!!"
+    flash[:sucess] = "You are going to this event!"
 
     redirect_back(fallback_location: root_path)
   end
