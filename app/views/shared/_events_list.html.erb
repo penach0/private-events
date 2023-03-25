@@ -1,0 +1,11 @@
+<h2><%= type.capitalize %> Events</h2>
+
+<%if events.empty? %>
+    <p>There are no <%= type %> events</p>
+<% else %>
+    <ul>
+        <% events.each do |event| %>
+            <li><%= link_to event.name.capitalize, event_path(event.id) %></li> 
+        <% end %>
+    </ul>
+<% end %>
