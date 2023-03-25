@@ -1,6 +1,7 @@
 class AttendancesController < ApplicationController
   def create
-    @attendance = Attendance.new(attendance_params)
+    @attendance = Attendance.create(attendance_params)
+    redirect_back(fallback_location: root_path)
   end
 
   private
