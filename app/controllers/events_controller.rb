@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :check_ownership, only: [:edit, :update, :destroy]
 
   def index
     @events = Event.all
@@ -49,5 +50,14 @@ class EventsController < ApplicationController
   private
     def event_params
       params.require(:event).permit(:creator_id, :name, :date, :location, :description)
+    end
+
+    def check_ownership
+      @event = Event.find(params[:id])
+
+      unless @event.creator_id == current_user.id
+        redirect_back(fallback_location: root_path)
+        flash[:error] = "You are not allowed to do that"
+      end
     end
 end
