@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :check_ownership, only: [:edit, :update, :destroy]
 
   def index
@@ -55,7 +55,7 @@ class EventsController < ApplicationController
     def check_ownership
       @event = Event.find(params[:id])
 
-      unless @event.creator_id == current_user.id
+      unless @event.creator_logged_in?
         redirect_back(fallback_location: root_path)
         flash[:error] = "You are not allowed to do that"
       end
