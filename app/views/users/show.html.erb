@@ -2,7 +2,7 @@
 
 <%= render "shared/events_list", type: "created", events: @user.created_events %>
 
-<%= render "shared/events_list", type: "upcoming", events: @user.attended_events.where("date >= ?", Time.current) %>
+<%= render "shared/events_list", type: "upcoming", events: @user.attended_events.upcoming %>
 
-<%= render "shared/events_list", type: "past", events: @user.attended_events.where("date < ?", Time.current) %>
+<%= render "shared/events_list", type: "past", events: @user.attended_events.past %>
  

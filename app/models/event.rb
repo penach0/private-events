@@ -14,7 +14,7 @@ class Event < ApplicationRecord
     where("date < ?", Time.current)
   end
 
-  def self.future
+  def self.upcoming
     where("date >= ?", Time.current)
   end
 end
