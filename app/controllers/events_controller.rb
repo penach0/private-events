@@ -32,10 +32,18 @@ class EventsController < ApplicationController
 
     if @event.update(event_params)
       redirect_to @event
-      flash[:sucess] = "Your Event was edited successfully"
+      flash[:success] = "Your Event was edited successfully"
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+
+    redirect_to user_path(current_user.id)
+    flash[:success] = "Your Event was deleted successfully"
   end
 
   private
