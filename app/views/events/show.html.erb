@@ -14,5 +14,14 @@
     <% end %>
 </ul>
 
-<%= button_to "Attend", attendances_path, 
-    params: { attendance: { attendee_id: current_user.id, attended_event_id: @event.id } }%>
+<% attendance_params =
+    {attendance: { attendee_id: current_user.id, attended_event_id: @event.id } } %>
+
+<%= button_to "Attend", attendances_path, params: attendance_params %>
+
+<% current_attendance = current_user.attendances.find_by(attended_event_id: @event.id) %>
+
+<%= button_to "Unattend", attendance_path(current_attendance), 
+    method: :delete,
+    params: attendance_params,
+    data: { turbo_confirm: "Are you sure?" } %>
