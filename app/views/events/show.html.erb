@@ -25,8 +25,11 @@
     <% end %>
 </ul>
 
+
 <% if @event.created_by?(current_user) %>
-    <%= link_to "Manage Attendances", '#'%>
+    <%= turbo_frame_tag "manage-attendances" do %>
+        <%= link_to "Manage Attendances", new_attendance_path(event_id: @event.id)%>
+    <% end %>
 <% end %>
 
 <% if 1 == 2 #user_signed_in? %>
