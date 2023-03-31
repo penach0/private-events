@@ -1,4 +1,7 @@
 <%# collection_check_boxes(:attendance, :attendee_id, User.all, :id, :username)%>
 <%= turbo_frame_tag "manage-attendances" do %>
-    <h1>you got here</h1>
+    <%= form_with model: @event do |f| %>
+        <%= f.collection_check_boxes(:user_id, User.all, :id, :username) %>
+        <%= f.submit "Invite" %>
+    <% end %>
 <% end %>
