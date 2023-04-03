@@ -1,6 +1,11 @@
 class AttendancesController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+    event = Event.find(params[:event_id])
+    @attendances = User.ids.each { |user_id| event.attendances.build(attendee_id: user_id) }
+  end
+
   def create
     @attendance = Attendance.create(attendance_params)
     flash[:sucess] = "You are going to this event!"

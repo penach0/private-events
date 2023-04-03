@@ -10,6 +10,8 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
+  scope :attending, ->(event) { joins(:attendances).where("attended_event_id = ?", event.id) }
+
   def attending?(event)
     attended_events.include?(event)
   end
